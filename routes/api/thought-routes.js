@@ -26,10 +26,11 @@ router
     .route('/:thoughtId/:userId')
     .delete(deleteThought);
 
-//    Create a reaction to a thought
-router.route('/:thoughtId/reactions').post(addReaction);
+//    Create and Delete a reaction to a thought
+router
+    .route('/:thoughtId/reactions')
+    .post(addReaction)
+    .delete(removeReaction);
 
-//    Delete a reaction from a thought
-router.route('/:thoughtId/reactions/:reactionId').delete(removeReaction);
 
 module.exports = router;

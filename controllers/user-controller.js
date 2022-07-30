@@ -12,7 +12,7 @@ const userController = {
             .then(dbUserData => res.json(dbUserData))
             .catch(err => {
                 console.log(err);
-                res.status(400).json(err);
+                res.status(500).json(err);
             });
     },
 
@@ -33,7 +33,7 @@ const userController = {
         })
         .catch(err => {
             console.log(err);
-            res.status(400).json(err);
+            res.status(500).json(err);
         });
     },
 
@@ -41,7 +41,7 @@ const userController = {
     createUser({ body }, res) {
         User.create(body)
             .then(dbUserData => res.json(dbUserData))
-            .catch(err => res.status(400).json(err));
+            .catch(err => res.status(500).json(err));
     },
 
     // update user by id
@@ -54,7 +54,7 @@ const userController = {
                 }
                 res.json(dbUserData);
             })
-            .catch(err => res.status(400).json(err))
+            .catch(err => res.status(500).json(err))
     },
 
     // delete a user
@@ -62,13 +62,18 @@ const userController = {
         User.findOneAndDelete({ _id: params.id })
             .then(dbUserData => {
                 if (!dbUserData) {
-                    res.status(404).json({ message: 'No User found with that id!' });
-                    return;
-                }
+                    return res.status(404).json({ message: 'No User found with that id!' });
+                };
+                // supposed to delete all associated comments but doesn't seem to work
+                // Thought.deleteMany({ _id: { $in: dbUserData.thoughts } });
                 res.json(dbUserData);
             })
-            .catch(err => res.status(400).json(err));
+            .catch(err => res.json(err));
     },
+
+    // add a friend to user
+
+    // remove a friend from user
 };
 
 module.exports = userController;
