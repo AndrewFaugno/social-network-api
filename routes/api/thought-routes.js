@@ -26,10 +26,14 @@ router
     .route('/:thoughtId/:userId')
     .delete(deleteThought);
 
-//    Create and Delete a reaction to a thought
+//    Create a reaction
 router
     .route('/:thoughtId/reactions')
-    .post(addReaction)
+    .post(addReaction);
+
+//    Delete reaction
+router
+    .route('/:thoughtId/reactions/:reactionId')
     .delete(removeReaction);
 
 
