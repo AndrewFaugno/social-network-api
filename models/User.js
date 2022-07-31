@@ -12,7 +12,8 @@ const UserSchema = new Schema(
             type: String,
             required: true,
             trim: true,
-            // add email validation (refer to mongoose 'validation' method)
+            // adds email verification with a regex using mongoose's 'match' command
+            match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, 'Please enter a valid email!']
         },
         thoughts: [
             {
