@@ -17,7 +17,8 @@
   Clone to directory, then run `npm i` to install dependencies.
   
   ## Usage
-  To run project type `node server`, or `npm start` in root directory to turn on the server via localhost.
+  To run project type `node server`, or `npm start` in root directory to turn on the server via localhost. <br>
+  View [Insomnia Walkthrough Guide Here.](https://drive.google.com/file/d/1W4ok4u1ltetQexECE9a_AAdqWEYyWgNL/view)
 
   ## Contribution
   Refer to installation.
