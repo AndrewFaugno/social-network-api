@@ -3,7 +3,7 @@
   ![](https://img.shields.io/badge/License-MIT-blue)
 
   ## Description
-  The backend for a social network web application where user's casn share their thoughts, react to friend's thoughts, and create a friends list.
+  The backend for a social network web application where user's can share their thoughts, react to friend's thoughts, and create a friends list.
 
   ## Table of Contents
   * [Installation](#installation)
