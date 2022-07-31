@@ -5,7 +5,7 @@ const userController = {
     getAllUser(req, res) {
         User.find()
             .populate({
-                path: 'thoughts friends',
+                path: 'thoughts',
                 select: '-__v'
             })
             .select('-__v')
@@ -72,8 +72,38 @@ const userController = {
     },
 
     // add a friend to user
+    addFriend({ params }, res) {
+        User.findOneAndUpdate(
+            { _id: params.userId },
+            { $push: { friends: params.friendId } },
+            { new: true }
+            )
+            .then(dbUserData => {
+                if (!dbUserData) {
+                    return res.status(404).json({ message: 'No User found with that id!' });
+                }
+                res.json(dbUserData);
+            })
+            .catch(err => res.json(err));
+
+    },
 
     // remove a friend from user
+    removeFriend({ params }, res) {
+        User.findOneAndUpdate(
+            { _id: params.userId },
+            { $pull: { friends: params.friendId } },
+            { new: true }
+            )
+            .then(dbUserData => {
+                if (!dbUserData) {
+                    return res.status(404).json({ message: 'No User found with that id!' });
+                }
+                res.json(dbUserData);
+            })
+            .catch(err => res.json(err));
+
+    },
 };
 
 module.exports = userController;
